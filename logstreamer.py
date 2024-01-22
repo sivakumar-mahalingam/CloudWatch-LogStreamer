@@ -48,6 +48,7 @@ response = logs.describe_log_streams(
 	limit = 1
 )
 
+
 # Post log to an existing Log Stream using uploadSequenceToken
 if len(response['logStreams']) > 0 and response['logStreams'][0] and 'uploadSequenceToken' in response['logStreams'][0]:
     sequence_token = response['logStreams'][0]['uploadSequenceToken']
@@ -72,7 +73,7 @@ else:
 		)
 		
 	# Post log to a new Log Stream
-	response_log_events = logs.put_log_events(
+    response_log_events = logs.put_log_events(
 	  logGroupName = LOG_GROUP,
 	  logStreamName = LOG_STREAM,
 	  logEvents = [
