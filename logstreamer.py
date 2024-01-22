@@ -51,8 +51,7 @@ response = logs.describe_log_streams(
 
 # Post log to an existing Log Stream using uploadSequenceToken
 if len(response['logStreams']) > 0 and response['logStreams'][0] and 'uploadSequenceToken' in response['logStreams'][0]:
-    sequence_token = response['logStreams'][0]['uploadSequenceToken']
-	
+	sequence_token = response['logStreams'][0]['uploadSequenceToken']
 	response_log_events = logs.put_log_events(
 	    logGroupName = LOG_GROUP,
 		logStreamName = LOG_STREAM,
@@ -67,13 +66,13 @@ if len(response['logStreams']) > 0 and response['logStreams'][0] and 'uploadSequ
 else:
     # Create Log Stream if it is not available
 	if len(response('logStreams')) == 0:
-	    response_log_stream = logs.create_log_stream(
+		response_log_stream = logs.create_log_stream(
 		    logGroupName = LOG_GROUP,
 			logStreamName = LOG_STREAM
 		)
 		
 	# Post log to a new Log Stream
-    response_log_events = logs.put_log_events(
+	response_log_events = logs.put_log_events(
 	  logGroupName = LOG_GROUP,
 	  logStreamName = LOG_STREAM,
 	  logEvents = [
